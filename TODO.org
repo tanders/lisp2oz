@@ -1,0 +1,39 @@
+
+* Remove files from template
+
+  sources/general.lisp
+  resources/icon/*
+
+
+
+
+* Make generation of socket port number more stable		    :ARCHIVE:
+
+  Can I ask OS to generate fresh/unused port number?
+
+  *Better: There is probably a way to free the port I used before*
+
+  For example, Oz sockets understand the method close (http://www.mozart-oz.org/documentation/system/node55.html#chapter.open)
+
+
+
+* Make sure the Lisp function quit-oz cannot close socket too early :ARCHIVE:
+
+
+
+* Avoid that more than one OzServer can be started at any time
+
+  run-oz does nothing before quit-oz has been called
+
+* Make Oz compiler GUI optional 
+
+
+* Allow that Oz compiler is OPI (i.e. the compiler also seen by emacs)
+
+
+
+
+
+  
+
+

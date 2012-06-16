@@ -1,0 +1,15 @@
+* Overview
+
+lisp2oz defines an interface between the programming languages [[http://en.wikipedia.org/wiki/Oz_%28programming_language%29][Oz]] on the one hand and [[http://en.wikipedia.org/wiki/Common_lisp][Common Lisp]] on the other hand. This interface is intended for interfacing the music composition systems [[http://strasheela.sourceforge.net/][Strasheela]] (implemented in Oz) and the Lisp-based systems [[http://en.wikipedia.org/wiki/OpenMusic][OpenMusic]] and [[http://www2.siba.fi/PWGL/][PWGL]].
+
+
+* Dependencies
+
+lisp2oz is implemented in Common Lisp, it has been tested in LispWords and SBCL. 
+
+lisp2oz has further dependencies. In order to be usable in different Common Lisp implementations, lisp2oz uses the sockets provided by [[http://clocc.sourceforge.net/dist/port.html][PORT]], which is part of [[http://clocc.sourceforge.net/][CLOCC]]. [[https://github.com/tanders/OMPort][OMPort]] provides a ready-to-use OpenMusic and PWGL library of PORT. 
+
+lisp2oz also depends on [[http://strasheela.sourceforge.net/strasheela/contributions/anders/OzServer/doc/node1.html][OzServer]], which is part of Strasheela (and installed when Strasheela is installed). OzServer wraps the Oz compiler into a server that awaits arbitrary Oz code sent via a socket. 
+
+
+
