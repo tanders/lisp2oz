@@ -26,24 +26,29 @@
 (defparameter *default-oz-init-file* "~/.ozrc")
 
 
+(defparameter *is-server-running?* nil
+  "Boolean whether or not run-oz already started an Oz server.")
+
 (defun run-oz (&key (oz-server *default-oz-server*)
-                      (port 5000)
-                      (file *default-oz-init-file*)
-                      (result-format "lisp"))
-    "Easy to use top-level command to start the OzServer and connect Lisp to it. oz-server is the OzServer application to call (a string). See the OzServer documentation for the meaning of the other arguments. Meaningful values for result-format are \"lisp\" and \"lispWithStrings\". The port argument defaults to a fresh port number (i.e. a port number not used by previous calls of run-oz)."
-    ;; (if port 
-    ;;     (setf my-port port) ; take given port number
-    ;;   (incf my-port)) ; otherwise ensure fresh port number
-    ;; start-oz-server runs concurrently in its own thread
-    (port:make-process (format nil "OzServer at port ~a" port)
-                       #'start-oz-server :oz-server oz-server
-                       :port port
-                       :file file
-                       :result-format result-format)
-    ;; wait for 1 sec to make sure server is started
-    (sleep 1)
-    (connect-to-oz :port port
-                   :host "localhost"))
+		    (port 5000)
+		    (file *default-oz-init-file*)
+		    (result-format "lisp"))
+  "Easy to use top-level command to start the OzServer and connect Lisp to it. oz-server is the OzServer application to call (a string). See the OzServer documentation for the meaning of the other arguments. Meaningful values for result-format are \"lisp\" and \"lispWithStrings\". The port argument defaults to a fresh port number (i.e. a port number not used by previous calls of run-oz)."
+  (if *is-server-running?*
+      ;; OpenMusic ignores warnings
+      (warn "Oz server already running. You can stop it by calling quit-oz.")
+    ;; NOTE: errors in bash or the OzServer are not seen by Lisp. So, I cannot unwind-protect related problems
+    (progn 
+      (port:make-process (format nil "OzServer at port ~a" port)
+			 #'start-oz-server :oz-server oz-server
+			 :port port
+			 :file file
+			 :result-format result-format)
+      ;; wait for 1 sec to make sure server is started
+      (sleep 1)
+      (connect-to-oz :port port
+		     :host "localhost")
+      (setf *is-server-running?* T))))
 
 ;;;;;
 
@@ -205,8 +210,11 @@ NB: this function does not return before the cmd is finished -- consider running
 
   (defun quit-oz ()
     "Quits the OzServer (and implicitly closes the connections)."
-    (feed-to-oz "quit" "")
-    (close oz-socket-stream))
+    (when *is-server-running?*
+      (progn (feed-to-oz "quit" "")
+	     (close oz-socket-stream)
+	     (setf *is-server-running?* NIL))))
+      
 )
 
 
