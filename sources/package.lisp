@@ -2,8 +2,8 @@
 
 ;; (defvar oz)   
 
-(unless (find-package :oz-server-interface)
-  (make-package :oz-server-interface
+(unless (find-package :lisp2oz)
+  (make-package :lisp2oz
                 :nicknames '(:oz)
                 :use '(:common-lisp)))
 
