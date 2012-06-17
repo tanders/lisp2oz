@@ -3,7 +3,7 @@
 (in-package :om)
 
 ;; dependencies
-(require-library "OMPort")
+(require-library "port")
 (require-library "ompw")
 
 ;; loading files
@@ -19,6 +19,7 @@
 	"lisp-client"
 	"lisp-to-oz"
 	"export"
+	"boxes"
 	))
 
 ;; Seting the menu and sub-menu structure, and filling packages
