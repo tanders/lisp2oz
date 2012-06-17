@@ -2,7 +2,7 @@
 
 lisp2oz defines an interface between the programming languages [[http://en.wikipedia.org/wiki/Oz_%28programming_language%29][Oz]] on the one hand and [[http://en.wikipedia.org/wiki/Common_lisp][Common Lisp]] on the other hand. This interface is intended for interfacing the music composition systems [[http://strasheela.sourceforge.net/][Strasheela]] (implemented in Oz) and the Lisp-based systems [[http://en.wikipedia.org/wiki/OpenMusic][OpenMusic]] and [[http://www2.siba.fi/PWGL/][PWGL]].
 
-lisp2oz is packaged as an OpenMusic library, so that it can be easily loaded into OpenMusic. In addition, the subdirectory sources can be loaded as a library into PWGL, just rename that directory.
+lisp2oz is packaged as an OpenMusic and also a PWGL library, so that it can be easily loaded into either of these systems. Just copy the whole folder of this software into your libraries folder on your system (refer to the documentation of OpenMusic or PWGL for details).
 
 
 * Dependencies
