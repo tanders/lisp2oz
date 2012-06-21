@@ -20,10 +20,14 @@
 
 
 
-(define-box feed-expression (code-string)
+(define-box feed-oz-expr (code-string)
   "Feeds the expression code-string (a string) to the OzServer and returns the result of the expression as Lisp value (the suitable result-format must be set when starting the OzServer)."
-  (oz:feed-expression code-string))
+  (oz:feed-oz-expr code-string))
 
+
+(define-box feed-oz-file (path)
+  "Feeds the file at path (a string) to the OzServer."
+  (oz:feed-oz-file path))
 
 (install-menu lisp2oz)
 

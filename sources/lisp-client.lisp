@@ -218,25 +218,25 @@ NB: this function does not return before the cmd is finished -- consider running
 )
 
 
-(defun feed-file (path)
-  "Feeds the file path (a string) to the OzServer."
+(defun feed-oz-file (path)
+  "Feeds the file at path (a string) to the OzServer."
   (feed-to-oz "file" path))
 
-(defun feed-statement (code-string)
+(defun feed-oz-statement (code-string)
   "Feeds the statement code-string (a string) to the OzServer."
   (feed-to-oz "statement" code-string))
 
-(defun feed-expression (code-string)
+(defun feed-oz-expr (code-string)
   "Feeds the expression code-string (a string) to the OzServer and returns the result of the expression as Lisp value (the suitable result-format must be set when starting the OzServer)."
   (progn 
     (feed-to-oz "expression" code-string)
     (read-from-oz)))
   
-(defun browse-expression (code-string)
+(defun browse-oz-expr (code-string)
   "Feeds the expression code-string (a string) to the OzServer and displays the result with the Oz Browser."
   (feed-to-oz "browse" code-string))
   "Feeds the expression code-string (a string) to the OzServer and displays the result with the Oz Inspector."
-(defun inspect-expression (code-string)
+(defun inspect-oz-expr (code-string)
   (feed-to-oz "inspect" code-string))
 
 
